@@ -1,0 +1,260 @@
+Java Collection Framework Assignment
+Objective:
+
+The objective of this assignment is to demonstrate an understanding of the Java Collection Framework through the 
+implementation of various tasks using different collection classes like ArrayList, TreeMap, PriorityQueue, LinkedList, and HashMap.
+
+Task 1: Find the kth Smallest Element in an ArrayList
+
+Problem Statement:
+Write a program that finds the kth smallest element in an ArrayList of integers.
+
+Explanation:
+
+You will sort the ArrayList and return the element at the k-1 index after sorting.
+
+
+import java.util.*;
+
+class KthSmallestElement {
+    public static int findKthSmallest(ArrayList<Integer> list, int k) {
+      
+        Collections.sort(list);
+       
+        return list.get(k - 1);
+    }
+}
+
+
+
+Explanation:
+
+findKthSmallest method takes an ArrayList<Integer> and an integer k as input, sorts the list in ascending order, and then 
+returns the element at index k-1, which is the kth smallest element.
+
+Task 2: Create a TreeMap to Store the Mappings of Words to Their Frequencies in a Given Text
+
+Problem Statement:
+Write a program to count the frequency of each word in a given text and store the word counts in a TreeMap.
+
+Explanation:
+
+Split the input text into words.
+
+Use a TreeMap<String, Integer> to store the frequency of each word.
+
+// Task 2: Create a TreeMap to store the mappings of words to their frequencies in a given text
+import java.util.*;
+
+class WordFrequency {
+    public static TreeMap<String, Integer> wordCount(String text) {
+        TreeMap<String, Integer> wordMap = new TreeMap<>();
+        String[] words = text.split("\\s+");  
+        
+       
+        for (String word : words) {
+            word = word.toLowerCase();  
+            wordMap.put(word, wordMap.getOrDefault(word, 0) + 1);
+        }
+        
+        return wordMap;
+    }
+}
+
+
+Explanation:
+
+wordCount method takes a string text, splits it into words, and counts the frequency of each word. 
+The frequencies are stored in a TreeMap, which ensures the words are sorted alphabetically.
+
+Task 3: Implement a Queue and Stack Using the PriorityQueue Class with a Custom Comparator
+
+Problem Statement:
+Implement a queue and a stack using the PriorityQueue class with custom comparators. For the queue,
+use a min-heap, and for the stack, use a max-heap.
+
+Explanation:
+
+A min-heap is used to implement the queue (smallest element has the highest priority).
+
+A max-heap is used to implement the stack (largest element has the highest priority).
+
+// Task 3: Implement a Queue and Stack using the PriorityQueue class with a custom comparator
+import java.util.*;
+
+class CustomQueueStack {
+    
+  
+    public static PriorityQueue<Integer> createQueue() {
+        return new PriorityQueue<>();  // Min-heap
+    }
+
+ 
+    public static PriorityQueue<Integer> createStack() {
+        return new PriorityQueue<>(Collections.reverseOrder());  
+    }
+}
+
+
+Explanation:
+
+createQueue method returns a PriorityQueue that uses the default ordering (min-heap) for the queue.
+
+createStack method returns a PriorityQueue with Collections.reverseOrder() to create a max-heap for the stack.
+
+Task 4: Create a TreeMap to Store the Mappings of Student IDs to Their Details
+
+Problem Statement:
+Create a TreeMap to store the student IDs as keys and the student details (name, age) as values.
+
+Explanation:
+
+A TreeMap<Integer, Student> stores the student IDs and their details. The map is sorted by student ID by default.
+
+// Task 4: Create a TreeMap to store the mappings of student IDs to their details
+import java.util.*;
+
+class StudentDetails {
+    static class Student {
+        String name;
+        int age;
+
+        Student(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return "Name: " + name + ", Age: " + age;
+        }
+    }
+
+    public static TreeMap<Integer, Student> storeStudentDetails() {
+        TreeMap<Integer, Student> studentMap = new TreeMap<>();
+        
+        
+        studentMap.put(101, new Student("John Doe", 20));
+        studentMap.put(102, new Student("Jane Smith", 22));
+        studentMap.put(103, new Student("Sam Brown", 19));
+        
+        return studentMap;
+    }
+}
+
+
+Explanation:
+
+A Student class holds the name and age properties.
+
+A TreeMap<Integer, Student> stores the student details, where the student ID is the key.
+
+Task 5: Write a Program to Check if Two LinkedLists are Equal
+
+Problem Statement:
+Write a program to check if two LinkedLists are equal. Two linked lists are equal if they contain the
+same elements in the same order.
+
+Explanation:
+
+Use the equals() method to check for equality between two linked lists.
+
+// Task 5: Write a program to check if two LinkedLists are equal
+import java.util.*;
+
+class LinkedListEquality {
+    public static boolean areLinkedListsEqual(LinkedList<Integer> list1, LinkedList<Integer> list2) {
+        return list1.equals(list2);
+    }
+}
+
+
+Explanation:
+
+areLinkedListsEqual method compares two LinkedLists using the equals() method, which checks if both lists have the same
+size and elements in the same order.
+
+Task 6: Create a HashMap to Store the Mappings of Employee IDs to Their Departments
+
+Problem Statement:
+Create a HashMap to store employee IDs as keys and their respective departments as values.
+
+Explanation:
+
+A HashMap<Integer, String> stores employee IDs and their departments. Employee IDs are the keys, 
+and the department names are the values.
+
+// Task 6: Create a HashMap to store the mappings of employee IDs to their departments
+import java.util.*;
+
+class EmployeeDepartments {
+    public static HashMap<Integer, String> storeEmployeeDepartments() {
+        HashMap<Integer, String> employeeMap = new HashMap<>();
+        
+        
+        employeeMap.put(1001, "Engineering");
+        employeeMap.put(1002, "Marketing");
+        employeeMap.put(1003, "HR");
+        
+        return employeeMap;
+    }
+}
+
+
+Explanation:
+
+storeEmployeeDepartments method creates a HashMap to store employee data where the employee ID is the key 
+and the department is the value.
+
+Main Class to Demonstrate All Tasks
+public class Main {
+    public static void main(String[] args) {
+        
+        
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(12, 5, 7, 19, 3, 9, 15));
+        int k = 3;
+        int kthSmallest = KthSmallestElement.findKthSmallest(numbers, k);
+        System.out.println("The " + k + "rd smallest element is: " + kthSmallest);
+        
+      
+        String text = "Java is a programming language. Java is also a platform.";
+        TreeMap<String, Integer> wordFrequency = WordFrequency.wordCount(text);
+        System.out.println("\nWord frequencies: " + wordFrequency);
+        
+        
+        PriorityQueue<Integer> queue = CustomQueueStack.createQueue();
+        queue.add(5);
+        queue.add(1);
+        queue.add(3);
+        System.out.println("\nQueue (Min-Heap): " + queue.poll());  
+        PriorityQueue<Integer> stack = CustomQueueStack.createStack();
+        stack.add(10);
+        stack.add(20);
+        stack.add(5);
+        System.out.println("\nStack (Max-Heap): " + stack.poll());  
+        
+      
+        TreeMap<Integer, StudentDetails.Student> studentMap = StudentDetails.storeStudentDetails();
+        System.out.println("\nStudent Details: " + studentMap);
+        
+       
+        LinkedList<Integer> list1 = new LinkedList<>(Arrays.asList(1, 2, 3, 4));
+        LinkedList<Integer> list2 = new LinkedList<>(Arrays.asList(1, 2, 3, 4));
+        LinkedList<Integer> list3 = new LinkedList<>(Arrays.asList(4, 3, 2, 1));
+        
+        System.out.println("\nAre list1 and list2 equal? " + LinkedListEquality.areLinkedListsEqual(list1, list2));
+        System.out.println("Are list1 and list3 equal? " + LinkedListEquality.areLinkedListsEqual(list1, list3));
+        
+  
+        HashMap<Integer, String> employeeMap = EmployeeDepartments.storeEmployeeDepartments();
+        System.out.println("\nEmployee Details: " + employeeMap);
+    }
+}
+
+
+
+PriorityQueue
+
+LinkedList
+
+HashMap
